@@ -1,0 +1,5 @@
+---
+- name: Install exim4
+  apt:
+    name: exim4
+    state: latest

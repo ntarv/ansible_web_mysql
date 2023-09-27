@@ -1,0 +1,15 @@
+---
+mysql_port: 3306
+mysql_socket: /var/run/mysqld/mysqld.sock
+mysql_superuser: root
+mysql_superuser_home: "{% if mysql_superuser == 'root' %}/root{% else %}/home/{{ mysql_superuser }}{% endif %}"
+mysql_superuser_password: password
+
+User_uid: 10000
+Group_GID: 10000
+user_password: password
+
+DOMAIN_NAME: domain_name
+locale1: ru_RU.UTF-8
+locale2: en_US.UTF-8
+time_zone: Europe/Moscow

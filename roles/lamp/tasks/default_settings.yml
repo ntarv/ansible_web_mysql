@@ -1,0 +1,52 @@
+---
+
+  - name: update repo
+    shell: apt update
+
+  - name: install default app
+    apt:
+      name:
+        - dirmngr
+        - mc
+        - iotop
+        - tcpdump
+        - nmap
+        - curl
+        - hexedit 
+        - sudo 
+        - zip 
+        - unzip 
+        - patch 
+        - pwgen 
+        - vim 
+        - less 
+        - parted 
+        - subversion 
+        - ntp 
+        - bzip2 
+        - lsof 
+        - strace 
+        - mutt 
+        - s-nail 
+        - ncdu 
+        - smartmontools 
+        - tree 
+        - dnsutils 
+        - logrotate 
+        - rsyslog
+        - pip
+          
+        - python3-mysqldb  
+      state: latest
+      update_cache: true
+  - name: time
+    shell:
+      cmd: "timedatectl set-timezone {{time_zone}}"
+
+  - name: locale settings
+    shell:
+      cmd: 'locale-gen {{locale1}} && update-locale LANG={{locale2}} LC_TIME="{{locale1}}"'
+
+  - name: hostname
+    shell:
+      cmd: "hostnamectl set-hostname {{DOMAIN_NAME}}"

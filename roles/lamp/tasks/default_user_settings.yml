@@ -1,0 +1,26 @@
+---
+
+- name: add group
+  group:
+    name: "{{ DOMAIN_NAME }}"
+    state: present
+    gid: "{{ Group_GID }}"
+
+- name: add user
+  user:
+    name: "{{ DOMAIN_NAME }}"
+    password: "{{ user_password | password_hash('sha512') }}"
+    uid: "{{ User_uid }}"
+    group: "{{ DOMAIN_NAME }}"
+    state: present
+    update_password: on_create
+    home: "/var/www/{{ DOMAIN_NAME }}"
+    shell: /bin/bash
+
+- name: create home directory
+  file:
+    path: "/var/www/{{ DOMAIN_NAME }}"
+    owner: "{{ DOMAIN_NAME }}"
+    group: "{{ DOMAIN_NAME }}"
+    mode: 0751
+    state: directory
